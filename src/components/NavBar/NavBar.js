@@ -1,4 +1,6 @@
 import styledComponents from "styled-components";
+import logo from "./popcorn_PNG33.png";
+import search from "./search.png"
 
 const NavBar = () => {
   const MyNavBarStyled = styledComponents.div`
@@ -9,6 +11,7 @@ const NavBar = () => {
   width:100%;
   height:4.5rem;
   color:white;
+  border-bottom:1px solid white;
   `
   const MyItemNavBar = styledComponents.article`
   color:white;
@@ -19,16 +22,19 @@ const NavBar = () => {
     justify-content:flex-start;
     align-items:center;
     flex-basis:50%;
-    border:thin solid grey;
+    margin-left:3rem;
 
-  & > span{
-    padding:.5rem;
+  & > .logo-corn{
+    width:2.5rem;
+    height:2.5rem;
+    margin-right:.5rem;
   }
+
   }
 
   .movies{
     position:relative;
-   border-left:2px solid white;
+   border-left:1.5px solid white;
    padding:.3em;
 
    span{
@@ -49,13 +55,20 @@ const NavBar = () => {
     display:flex;
 flex-basis:50%;
 justify-content:flex-end;
- border:thin solid grey;
+fon-size:18px;
+ margin-right:3rem;
+align-items:center;
+.search{
+  width:1.5rem;
+  heigth:1.5rem;
+  margin-right:.5rem;
+}
   }
 
   `
   return (<MyNavBarStyled>
     <MyItemNavBar className="pop-corn">
-      <span>palomitas</span>
+      <img src={logo} className="logo-corn" alt="Logo" />
       <div className="movies">
         <h1>PICHAR</h1>
         <span>Movies</span>
@@ -64,7 +77,8 @@ justify-content:flex-end;
     </MyItemNavBar>
 
     <MyItemNavBar className="my-list">
-      <span>lupa</span>
+
+      <img src={search} className="search" alt="seach" />
       <span>My list</span>
     </MyItemNavBar>
   </MyNavBarStyled>);
