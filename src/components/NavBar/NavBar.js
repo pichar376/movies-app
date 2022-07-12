@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styledComponents from "styled-components";
 import logo from "./popcorn_PNG33.png";
 import search from "./search.png"
@@ -78,8 +79,8 @@ align-items:center;
 
     <MyItemNavBar className="my-list">
 
-      <img src={search} className="search" alt="seach" />
-      <span>My list</span>
+      <img src={search} className="search" alt="search" />
+      <NavLink to="/favorite-list">My List</NavLink>
     </MyItemNavBar>
   </MyNavBarStyled>);
 }

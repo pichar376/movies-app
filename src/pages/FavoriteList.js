@@ -1,4 +1,5 @@
 const FavoriteList = () => {
+
   return (
     <div>
       <h1>Lista de favoritos</h1>
