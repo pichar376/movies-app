@@ -10,7 +10,7 @@ const NavBar = () => {
   justify-content:space-around;
   align-items:center;
   width:100%;
-  height:4.5rem;
+  height:8rem;
   color:white;
   border-bottom:1px solid white;
   `
@@ -26,29 +26,30 @@ const NavBar = () => {
     margin-left:3rem;
 
   & > .logo-corn{
-    width:2.5rem;
-    height:2.5rem;
+    width:5rem;
+    height:5rem;
     margin-right:.5rem;
   }
 
   }
 
-  .movies{
+  .title-movies{
     position:relative;
+    height:6rem;
    border-left:1.5px solid white;
-   padding:.3em;
+   padding:.6em;
 
-   span{
+   .movies{
     position:absolute;
     bottom:-2px;
-    font-size:11px;
-    letter-spacing:1.2px;
+    font-size:30px;
+    letter-spacing:1.2px;;             
    }
 
    h1{
     flex-flow:column wrap;
-    font-size:35px;
     color:red;
+    font-size:60px;
   }
   }
 
@@ -70,9 +71,9 @@ align-items:center;
   return (<MyNavBarStyled>
     <MyItemNavBar className="pop-corn">
       <img src={logo} className="logo-corn" alt="Logo" />
-      <div className="movies">
+      <div className="title-movies">
         <h1>PICHAR</h1>
-        <span>Movies</span>
+        <span className="movies">Movies</span>
 
       </div>
     </MyItemNavBar>

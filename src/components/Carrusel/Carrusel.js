@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
 import styledComponents from "styled-components";
 import MoviesContext from "../../context/MoviesContext";
 import MovieCard from "../MovieCard/MovieCard";
@@ -8,23 +9,40 @@ display:flex;
 scrollbar-width:none;
 color:white;
 overflow-x:scroll;
-
 &::-webkit-scrollbar{
   display:none;
 }
 
 `
 
-const Carrusel = () => {
-  const { res, loading, error } = useContext(MoviesContext);
+
+const Carrusel = ({ category }) => {
+
+
+
+
+
+
+  if (!category) {
+    return <h1>Cargando...</h1>
+  }
   return (
     <MyCarruselStyle>
+      {category.map((movie) => <div key={movie.res.id}><MovieCard title={movie.res.title} duration={movie.res.runtime} imgSrc={movie.res.poster_path} movieId={movie.res.id} />
 
-      <MovieCard />
-      <img src="https://image.tmdb.org/t/p/w500/hQ4pYsIbP22TMXOUdSfC2mjWrO0.jpg" alt="imagen" />
+        <Link to={{
+          pathname: `/description/${movie.res.id}`,
+          state: {
+            saludo: "hola mundo"
+          }
+        }} >Description</Link>
+
+      </div>)
+      }
 
     </MyCarruselStyle>
   );
 }
+
 
 export default Carrusel;

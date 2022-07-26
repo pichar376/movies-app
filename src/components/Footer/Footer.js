@@ -3,8 +3,8 @@ const Footer = () => {
 
   const MyFooterStyle = styledComponents.footer`
    width:100%;
-   background-color:white;
-   height:3rem;
+   background-color:#000;
+   height:8rem;
 `
   return (
     <MyFooterStyle>

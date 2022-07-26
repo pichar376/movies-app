@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { dramaMovies, kidsMovies, oldMovies, popularMovies, scienceFiccionMovies } from "../helpers/categories";
 import useFetch from "../helpers/useFetch";
 
@@ -11,9 +12,9 @@ const MoviesContext = createContext();
 
 const MoviesProvider = ({ children }) => {
   ;
-  const [categoryList, setCategoryList] = useState([]);
+  const [categoryList, setCategoryList] = useState({});
 
-  const [movie, setMovie] = useState({});
+  const [movies, setMovies] = useState({});
   const [loading, setLoading] = useState(false);
   const apiKey = "4c33c096c97964f1af4afe925f4f5687"
 
@@ -39,14 +40,14 @@ const MoviesProvider = ({ children }) => {
 
       time = numRandom
     }
-
-    return setMovie({
-      ...res,
+    return {
+      res,
       runtime: time,
-    })
+    }
 
 
   }
+
 
   const getCategories = async (arr, apiKey) => {
     const categoriesPromise = await arr.map((category) =>
@@ -63,26 +64,73 @@ const MoviesProvider = ({ children }) => {
     const jsonCategories = await Promise.all(jsonCategoriesPromise);
 
 
+
+    // const finalCategoriesResults = await Promise.all(
+    //   promiseFinalCategoriesResults.map(
+    //     async (category) => await Promise.all(category)
+    //   )
+    // );
+
+
     const categoryResults = jsonCategories.map((category) =>
       category.results)
 
-    const [po, ki, old, dram, scie] = categoryResults;
+
+    const categoryPromiseResults = categoryResults.map(
+      (categoryResult) =>
+        categoryResult.map((movie) => getMovie(movie, apiKey)))
 
 
 
-    getMovie(po[0], apiKey)
+    const finalDataResults = await Promise.all(
+      categoryPromiseResults.map(async (category) => await Promise.all(category))
+    )
+
+
+    const allMovies = finalDataResults[0].concat(
+      finalDataResults[1],
+      finalDataResults[2],
+      finalDataResults[3],
+      finalDataResults[4],
+    )
+
+
+
+    setMovies({
+      ...movies,
+      allMovies,
+    })
+
+
+    setCategoryList(
+      {
+        popularData: finalDataResults[0],
+        kidsData: finalDataResults[1],
+        dramaData: finalDataResults[2],
+        oldData: finalDataResults[3],
+        scienceFictionData: finalDataResults[4],
+      }
+    )
   }
+
+
+
+
+
   useEffect(() => {
 
     getCategories(arrMovies, apiKey)
-
-
 
   }, []);
 
 
 
-  const data = {}
+
+
+  const data = {
+    categoryList,
+    movies,
+  }
   return (
     <MoviesContext.Provider value={data}>{children}</MoviesContext.Provider>
   )

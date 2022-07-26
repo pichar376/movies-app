@@ -3,23 +3,21 @@ import Footer from "../Footer/Footer";
 import NavBar from "../NavBar/NavBar";
 import styledComponents from "styled-components"
 
-const MyLaoutStyles = styledComponents.div`
+const MyLayoutStyles = styledComponents.div`
 display:flex;
 flex-direction:column;
 positon:relative;
- background-color:red;
- width:100vw;
- height:100vh;
+ background-color:#000;
+ min-width:100vw;
+ min-height:100vh;
  
  `
 const Layout = ({ children }) => {
   return (
     <div>
-      <MyLaoutStyles >
-        <NavBar />
+      <MyLayoutStyles >
         {children}
-      </MyLaoutStyles>
-      <Footer />
+      </MyLayoutStyles>
     </div>
   );
 }

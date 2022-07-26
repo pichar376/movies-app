@@ -1,9 +1,13 @@
-const FavoriteList = () => {
+import styledComponents from "styled-components"
 
+const FavoriteList = () => {
+  const MyListStyled = styledComponents.div`
+color:white;
+
+`
   return (
-    <div>
-      <h1>Lista de favoritos</h1>
-    </div>
+    <MyListStyled>Lista de favoritos</MyListStyled>
+
   );
 }
 
