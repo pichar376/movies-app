@@ -30,16 +30,11 @@ const Carrusel = ({ category }) => {
     <MyCarruselStyle>
       {category.map((movie) => <div key={movie.res.id}><MovieCard title={movie.res.title} duration={movie.res.runtime} imgSrc={movie.res.poster_path} movieId={movie.res.id} />
 
-        <Link to={{
-          pathname: `/description/${movie.res.id}`,
-          state: {
-            saludo: "hola mundo"
-          }
-        }} >Description</Link>
+
+
 
       </div>)
       }
-
     </MyCarruselStyle>
   );
 }

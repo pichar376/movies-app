@@ -13,9 +13,12 @@ const MoviesContext = createContext();
 const MoviesProvider = ({ children }) => {
   ;
   const [categoryList, setCategoryList] = useState({});
-
+  const [allMovies, setAllMovies] = useState([]);
   const [movies, setMovies] = useState({});
   const [loading, setLoading] = useState(false);
+  const [myList, setMyList] = useState({});
+  const [addToList, setAddToList] = useState({});
+
   const apiKey = "4c33c096c97964f1af4afe925f4f5687"
 
 
@@ -72,6 +75,9 @@ const MoviesProvider = ({ children }) => {
     // );
 
 
+
+
+
     const categoryResults = jsonCategories.map((category) =>
       category.results)
 
@@ -97,8 +103,7 @@ const MoviesProvider = ({ children }) => {
 
 
     setMovies({
-      ...movies,
-      allMovies,
+      allMovies
     })
 
 
@@ -111,6 +116,16 @@ const MoviesProvider = ({ children }) => {
         scienceFictionData: finalDataResults[4],
       }
     )
+
+
+
+
+
+    return {
+      allMovies,
+
+
+    }
   }
 
 
@@ -127,9 +142,54 @@ const MoviesProvider = ({ children }) => {
 
 
 
+  const listMoviesId = (id) => {
+    setAddToList({
+      ...addToList,
+      [id]: id,
+
+    })
+
+
+    console.log(addToList)
+  }
+
+
+
+
+
+
+  const addToMyList = (idMovie, status) => {
+    switch (status) {
+      case undefined:
+        setMyList({
+          ...addToList,
+          [idMovie]: { idMovie, added: true, },
+        });
+        break;
+      case null:
+        setMyList({
+          ...addToList,
+          [idMovie]: { idMovie, added: true, },
+        });
+        break;
+      case true:
+        setMyList({
+          ...addToList,
+          [idMovie]: { idMovie, added: undefined, },
+        })
+      default:
+        break;
+    }
+  }
+
   const data = {
     categoryList,
     movies,
+    addToList,
+    setAddToList,
+    setMyList,
+    myList,
+    listMoviesId,
   }
   return (
     <MoviesContext.Provider value={data}>{children}</MoviesContext.Provider>

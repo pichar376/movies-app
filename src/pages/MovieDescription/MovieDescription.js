@@ -2,13 +2,14 @@ import styledComponents from "styled-components"
 
 import { useContext, useMemo } from "react";
 import MoviesContext from "../../context/MoviesContext";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useState } from "react";
 
 
 const MyDescriptionStyle = styledComponents.div`
   color:white;
   margin:0 14rem;
+  position:relative;
 
   img{
     width:100%;
@@ -19,6 +20,15 @@ const MyDescriptionStyle = styledComponents.div`
     margin:2rem 0;
     text-align:center;
   }
+
+  .go-back{
+width:10rem;
+height:2rem;
+position:absolute;
+right:-12rem;
+top:3rem;
+font-size:30px;
+  }
   `
 const MyContainerDataMovie = styledComponents.div`
 display:flex;
@@ -27,7 +37,7 @@ gap:1rem;
  .item-data-movie{
     display:flex;
     flex-flow:column wrap;
-    background-color:grey;
+    background-color:#045;
   }
   h2{
     font-size:35px;
@@ -38,12 +48,6 @@ gap:1rem;
 
 
 `
-
-const currentMovieObj = {
-  name: "harry Poter",
-  year: 2026,
-  overview: "good"
-}
 
 
 
@@ -66,6 +70,9 @@ const MovieDescription = () => {
   const { id } = useParams()
 
 
+
+
+
   const itemFiltered = movies.allMovies.filter((item) => item.res.id == id)
 
   const currentMovie = itemFiltered.map((item) => item)
@@ -77,12 +84,10 @@ const MovieDescription = () => {
   const { title, runtime, poster_path, overview, original_language, vote_average, popularity, vote_count, release_date } = infoMovie;
 
 
-  console.log(infoMovie)
-
-  console.log(title, runtime, poster_path, overview, original_language, vote_average, popularity, vote_count, release_date)
-
   return (
     <MyDescriptionStyle>
+
+      <Link to="/" className="go-back">Go Back</Link>
       <h1>{title}</h1>
       <img src={
         poster_path === "https://picsum.photos/720"
@@ -105,7 +110,7 @@ const MovieDescription = () => {
         <article class="item-data-movie"><h2>Total Votes</h2><p>{vote_count}
         </p>
         </article>
-        <article class="item-data-movie"><h1>Release Date</h1><p>{release_date}
+        <article class="item-data-movie"><h2>Release Date</h2><p>{release_date}
         </p>
         </article>
       </MyContainerDataMovie>

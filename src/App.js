@@ -4,12 +4,12 @@ import Layout from './components/Layout/Layout';
 import { Route, Routes, useParams } from "react-router-dom";
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
-import FavoriteList from './pages/FavoriteList';
 import MovieSearch from './pages/MovieSearch';
 import { MoviesProvider } from './context/MoviesContext';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import MovieDescription from './pages/MovieDescription/MovieDescription';
+import FavoriteList from './pages/FavoriteList/FavoriteList';
 
 
 
