@@ -4,12 +4,12 @@ import Layout from './components/Layout/Layout';
 import { Route, Routes, useParams } from "react-router-dom";
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
-import MovieSearch from './pages/MovieSearch';
 import { MoviesProvider } from './context/MoviesContext';
 import NavBar from './components/NavBar/NavBar';
 import Footer from './components/Footer/Footer';
 import MovieDescription from './pages/MovieDescription/MovieDescription';
 import FavoriteList from './pages/FavoriteList/FavoriteList';
+import MovieSearch from './pages/MovieSearch/MovieSearch';
 
 
 
@@ -25,7 +25,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/not-found" element={<NotFound />} />
           <Route path="/favorite-list" element={<FavoriteList />} />
-          <Route path="/movie-search" element={<MovieSearch />} />
+          <Route path="/movie-search/:params" element={<MovieSearch />} />
           <Route path="/description/:id" element={<MovieDescription />} />
         </Routes>
       </Layout>

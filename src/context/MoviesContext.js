@@ -18,6 +18,9 @@ const MoviesProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [myList, setMyList] = useState({});
   const [addToList, setAddToList] = useState({});
+  const [myListActive, setMyListActive] = useState(true);
+  const [currentSearch, setCurrentSearch] = useState("");
+  const [moviesList, setMoviesList] = useState([]);
 
   const apiKey = "4c33c096c97964f1af4afe925f4f5687"
 
@@ -123,7 +126,14 @@ const MoviesProvider = ({ children }) => {
 
     return {
       allMovies,
-
+      movies,
+      myListActive,
+      categoryList,
+      setMyListActive,
+      currentSearch,
+      setCurrentSearch,
+      moviesList,
+      setMoviesList
 
     }
   }
@@ -158,29 +168,7 @@ const MoviesProvider = ({ children }) => {
 
 
 
-  const addToMyList = (idMovie, status) => {
-    switch (status) {
-      case undefined:
-        setMyList({
-          ...addToList,
-          [idMovie]: { idMovie, added: true, },
-        });
-        break;
-      case null:
-        setMyList({
-          ...addToList,
-          [idMovie]: { idMovie, added: true, },
-        });
-        break;
-      case true:
-        setMyList({
-          ...addToList,
-          [idMovie]: { idMovie, added: undefined, },
-        })
-      default:
-        break;
-    }
-  }
+
 
   const data = {
     categoryList,
@@ -190,6 +178,11 @@ const MoviesProvider = ({ children }) => {
     setMyList,
     myList,
     listMoviesId,
+    setCurrentSearch,
+    setMoviesList,
+    currentSearch,
+    moviesList
+
   }
   return (
     <MoviesContext.Provider value={data}>{children}</MoviesContext.Provider>
