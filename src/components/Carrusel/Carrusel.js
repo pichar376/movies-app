@@ -7,13 +7,24 @@ import MovieCard from "../MovieCard/MovieCard";
 
 const MyCarruselStyle = styledComponents.div`
 display:flex;
-scrollbar-width:none;
 color:white;
 overflow-x:scroll;
-&::-webkit-scrollbar{
-  display:none;
+
+&::-webkit-scrollbar {
+  background: black;
+  border-radius: 10px;
+  height: 10px; }
+
+
+&::-webkit-scrollbar-track {
+  background:black;
+   border-radius: 10px;
 }
 
+&::-webkit-scrollbar-thumb {
+  background: white;
+   border-radius: 10px;
+}
 `
 
 

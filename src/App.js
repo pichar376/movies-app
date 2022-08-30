@@ -10,6 +10,8 @@ import Footer from './components/Footer/Footer';
 import MovieDescription from './pages/MovieDescription/MovieDescription';
 import FavoriteList from './pages/FavoriteList/FavoriteList';
 import MovieSearch from './pages/MovieSearch/MovieSearch';
+import Motion from './components/Motion';
+import { AnimatePresence } from "framer-motion"
 
 
 
@@ -19,17 +21,21 @@ function App() {
 
   return (
     <MoviesProvider>
-      <NavBar />
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/not-found" element={<NotFound />} />
-          <Route path="/favorite-list" element={<FavoriteList />} />
-          <Route path="/movie-search/:params" element={<MovieSearch />} />
-          <Route path="/description/:id" element={<MovieDescription />} />
-        </Routes>
-      </Layout>
-      <Footer />
+      <AnimatePresence exitBeforeEnter>
+
+        <NavBar />
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/not-found" element={<NotFound />} />
+            <Route path="/favorite-list" element={<FavoriteList />} />
+            <Route path="/movie-search/:params" element={<MovieSearch />} />
+            <Route path="/description/:id" element={<MovieDescription />} />
+            <Route path="/motion" element={<Motion />} />
+          </Routes>
+        </Layout>
+        <Footer />
+      </AnimatePresence>
     </MoviesProvider>
 
 

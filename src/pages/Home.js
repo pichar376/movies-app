@@ -4,9 +4,17 @@ import MoviesContext from "../context/MoviesContext";
 import { useLocation, Link } from "react-router-dom";
 import Video from "../components/Video/Video";
 import styled from "styled-components";
+import { motion } from "framer-motion"
+import { pageVariant } from "../helpers/variants";
 
 const MyContainerCarrusel = styled.div`
-
+margin:0 5rem;
+h2{
+  font-size:4rem;
+  padding:2rem;
+  color:white;
+  
+}
 `
 const Home = () => {
   const { categoryList } = useContext(MoviesContext);
@@ -14,18 +22,26 @@ const Home = () => {
 
 
   return (
+
     <div>
+
       <Video />
       <MyContainerCarrusel>
 
-
-        <Carrusel category={categoryList.popularData} />
-        <Carrusel category={categoryList.kidsData} />
-        <Carrusel category={categoryList.dramaData} />
-        <Carrusel category={categoryList.oldData} />
-        <Carrusel category={categoryList.scienceFictionData} />
+        <motion.div initial="out" animate="in" exit="out" variants={pageVariant}>
+          <h2>Popular Movies</h2>
+          <Carrusel category={categoryList.popularData} />
+          <h2>Kids Movies</h2>
+          <Carrusel category={categoryList.kidsData} />
+          <h2>Drama Movies</h2>
+          <Carrusel category={categoryList.dramaData} />
+          <h2>Old Movies</h2>
+          <Carrusel category={categoryList.oldData} />
+          <h2>Science Fiction Movies</h2>
+          <Carrusel category={categoryList.scienceFictionData} />
+        </motion.div>
       </MyContainerCarrusel>
-    </div >
+    </div>
   );
 }
 

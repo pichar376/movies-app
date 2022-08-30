@@ -1,24 +1,24 @@
 import Carrusel from "../Carrusel/Carrusel";
 import Footer from "../Footer/Footer";
 import NavBar from "../NavBar/NavBar";
-import styledComponents from "styled-components"
+import styled from "styled-components"
 
-const MyLayoutStyles = styledComponents.div`
+const MyLayoutStyles = styled.div`
 display:flex;
 flex-direction:column;
-positon:relative;
+position:relative;
  background-color:#000;
  min-width:100vw;
  min-height:100vh;
- 
+
  `
 const Layout = ({ children }) => {
   return (
-    <div>
-      <MyLayoutStyles >
-        {children}
-      </MyLayoutStyles>
-    </div>
+
+    <MyLayoutStyles >
+      {children}
+    </MyLayoutStyles>
+
   );
 }
 

@@ -16,7 +16,7 @@ const useVideo = () => {
 
 
     window.addEventListener("scroll", detectarScroll);
-    console.log(scrollY)
+
 
     if (scrollY > 750 && volumeStatus.volume === "active") {
       setMuted(true)

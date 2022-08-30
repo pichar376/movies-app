@@ -4,6 +4,10 @@ import { useContext, useMemo } from "react";
 import MoviesContext from "../../context/MoviesContext";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { useState } from "react";
+import {
+  descriptionVariants
+} from "../../helpers/variants";
+import { motion } from "framer-motion"
 
 
 const MyDescriptionStyle = styledComponents.div`
@@ -86,34 +90,41 @@ const MovieDescription = () => {
 
   return (
     <MyDescriptionStyle>
+      <motion.div initial="out" animate="in" exit="out" variants={
+        descriptionVariants}>
 
-      <Link to="/" className="go-back">Go Back</Link>
-      <h1>{title}</h1>
-      <img src={
-        poster_path === "https://picsum.photos/720"
-          ? "https://picsum.photos/720"
-          : `https://image.tmdb.org/t/p/w500${poster_path}`
-      } />
-      <MyContainerDataMovie>
-        <article class="item-data-movie"><h2>Duration</h2><p>
-        </p>{runtime}</article>
-        <article class="item-data-movie"><h2>Language</h2><p>{original_language}
-        </p></article>
-        <article class="item-data-movie"><h2>Description</h2><p>{overview}
-        </p>
-        </article>
-        <article class="item-data-movie"><h2>Popularity</h2><p>{popularity}
-        </p>
-        </article>
-        <article class="item-data-movie"><h2>Vote Average</h2><p>{vote_average}
-        </p></article>
-        <article class="item-data-movie"><h2>Total Votes</h2><p>{vote_count}
-        </p>
-        </article>
-        <article class="item-data-movie"><h2>Release Date</h2><p>{release_date}
-        </p>
-        </article>
-      </MyContainerDataMovie>
+        <Link to="/" className="go-back">Go Back</Link>
+        <h1>{title}</h1>
+        <img src={
+          poster_path === "https://picsum.photos/720"
+            ? "https://picsum.photos/720"
+            : `https://image.tmdb.org/t/p/w500${poster_path}`
+        } />
+        <MyContainerDataMovie>
+
+
+          <article class="item-data-movie"><h2>Duration</h2><p>
+          </p>{runtime}</article>
+          <article class="item-data-movie"><h2>Language</h2><p>{original_language}
+          </p></article>
+          <article class="item-data-movie"><h2>Description</h2><p>{overview}
+          </p>
+          </article>
+          <article class="item-data-movie"><h2>Popularity</h2><p>{popularity}
+          </p>
+          </article>
+          <article class="item-data-movie"><h2>Vote Average</h2><p>{vote_average}
+          </p></article>
+          <article class="item-data-movie"><h2>Total Votes</h2><p>{vote_count}
+          </p>
+          </article>
+          <article class="item-data-movie"><h2>Release Date</h2><p>{release_date}
+          </p>
+          </article>
+
+
+        </MyContainerDataMovie>
+      </motion.div>
     </MyDescriptionStyle>
   );
 }

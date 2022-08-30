@@ -9,7 +9,11 @@ const useFavoriteList = () => {
 
   const saveId = Object.values(addToList);
 
-  const movieList = movies.allMovies.filter((movie) => saveId.includes(movie.res.id));
+  let movieList = [];
+  if (movies.allMovies) {
+
+    movieList = movies.allMovies.filter((movie) => saveId.includes(movie.res.id));
+  }
 
 
   const handleDelete = (movieId) => {

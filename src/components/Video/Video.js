@@ -7,7 +7,6 @@ import mute from "./Mute-Sound-PNG-Free-Download.png"
 
 const MyStyleVideo = styled.div`
 position:relative;
-background-color:red;
 @media(max-width:770px){
   margin:3rem 0 0 0;
   width:70vw;
@@ -20,25 +19,24 @@ svg:hover {
 .video {
   width: 100%;
   object-fit: cover;
-  min-height: 500px;
-  max-height: 600px; }
-
-
- 
-  
-
+  min-height: 1000px;
+  max-height: 100vh;
+   }
 `
 
 const MyStyledVolume = styled.div`
   position: absolute;
   right: 0;
-  bottom: 0;
-  margin-right: 60px;
-  margin-bottom: 200px;
-  width: 60px;
-  height: 60px;
-  border-radius: 100%;
-  border: 0.1px solid white;
+  bottom: 42vh;
+  margin-right: 5.5vw;
+  height:7.5rem;
+  width: 7.5rem;
+  outline: none;
+  background-color: Transparent;
+  border: 1px solid white;
+  color: white;
+  border-radius: 50%;
+  transition: 200ms;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,8 +46,10 @@ const MyStyledVolume = styled.div`
     transform: scale(1.04);
     transition: 200ms; }
    img {
-    height: 25px;
-    width: 25px; }
+    height: 5rem;
+    width: 5rem;
+   padding:15px;
+  }
     img::selection {
       color: rgba(255, 255, 255, 0.8); }
 

@@ -22,6 +22,8 @@ const MoviesProvider = ({ children }) => {
   const [currentSearch, setCurrentSearch] = useState("");
   const [moviesList, setMoviesList] = useState([]);
 
+
+
   const apiKey = "4c33c096c97964f1af4afe925f4f5687"
 
 
@@ -133,7 +135,7 @@ const MoviesProvider = ({ children }) => {
       currentSearch,
       setCurrentSearch,
       moviesList,
-      setMoviesList
+      setMoviesList,
 
     }
   }

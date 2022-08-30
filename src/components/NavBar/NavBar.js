@@ -1,19 +1,23 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import styledComponents from "styled-components";
+import styled from "styled-components";
 import useMovieSearch from "../../pages/MovieSearch/useMovieSearch";
 import logo from "./popcorn_PNG33.png";
 import search from "./search.png"
-const MyNavBarStyled = styledComponents.div`
-
+import InputSearch from "./SearchInput";
+const MyNavBarStyled = styled.div`
   background-color:#000;
   display:flex;
+  justify-content:space-between;
+  padding-left:1rem;
+  padding-right:1rem;
   align-items:center;
   width:100%;
   height:8rem;
   color:white;
   border-bottom:1px solid white;
   `
-const MyItemNavBar = styledComponents.article`
+const MyItemNavBar = styled.article`
   display:flex;
   color:white;
   justify-content:flex-end;
@@ -21,17 +25,28 @@ const MyItemNavBar = styledComponents.article`
   
 img{
   width:1.5rem;
-  heigth:1.5rem;
+  height:1.5rem;
   margin-right:.5rem;
+
 }
 input{
+  margin:0 2rem;
   color:red;
-  width:5rem;
+  width:15rem;
+  background-color:#00000075;
+  border:thin solid #fff;
+}
+
+a{
+  margin:0 3rem 0 2rem;
+  font-size:30px;
+  color:white;
+  text-decoration:none;
 }
   
 
   `
-const MyItemLogo = styledComponents.article`
+const MyItemLogo = styled.article`
     
     display:flex;
     justify-content:flex-start;
@@ -66,32 +81,25 @@ const MyItemLogo = styledComponents.article`
   `
 
 const NavBar = () => {
+  return (
 
-  const { handleChange, currentSearch } = useMovieSearch();
+    <MyNavBarStyled >
+      <MyItemLogo>
+        <img src={logo} className="logo-corn" alt="Logo" />
+        <div className="title-movies"
+        >
+          <h1>PICHAR</h1>
+          <span className="movies">Movies</span>
 
+        </div>
+      </MyItemLogo>
 
+      <MyItemNavBar >
+        <InputSearch />
 
-
-
-
-  return (<MyNavBarStyled>
-    <MyItemLogo>
-      <img src={logo} className="logo-corn" alt="Logo" />
-      <div className="title-movies">
-        <h1>PICHAR</h1>
-        <span className="movies">Movies</span>
-
-      </div>
-    </MyItemLogo>
-
-    <MyItemNavBar >
-
-      <img src={search} className="search" alt="search" />
-      <input onChange={handleChange} value={currentSearch}
-      />
-      <NavLink to="/favorite-list">My List</NavLink>
-    </MyItemNavBar>
-  </MyNavBarStyled>);
+        <NavLink to="/favorite-list">My List</NavLink>
+      </MyItemNavBar>
+    </MyNavBarStyled>);
 }
 
 export default NavBar;
