@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import MoviesContext from "../../context/MoviesContext";
 import useMovieSearch from "../../pages/MovieSearch/useMovieSearch";
 import logo from "./popcorn_PNG33.png";
 import search from "./search.png"
-import InputSearch from "./SearchInput";
+import InputSearch from "./InputSearch";
+
+
+
+
 const MyNavBarStyled = styled.div`
-  background-color:#000;
+   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+   position:fixed;
+   z-index:999;
+  background-color:${({ scrollY }) => (scrollY ? "black" : "#0000009")}; 
+   transition:all .4s ease-in-out;
   display:flex;
   justify-content:space-between;
   padding-left:1rem;
@@ -15,32 +24,32 @@ const MyNavBarStyled = styled.div`
   width:100%;
   height:8rem;
   color:white;
-  border-bottom:1px solid white;
   `
 const MyItemNavBar = styled.article`
   display:flex;
   color:white;
   justify-content:flex-end;
     flex-basis:70%;
+    margin:1.5rem 5.5rem 0 0;
   
-img{
-  width:1.5rem;
-  height:1.5rem;
-  margin-right:.5rem;
 
-}
+    
 input{
   margin:0 2rem;
-  color:red;
-  width:15rem;
+  color:white;
+  width:25rem;
+  height:4rem;
+  font-size:35px;
+  padding:2rem;
   background-color:#00000075;
   border:thin solid #fff;
 }
 
 a{
-  margin:0 3rem 0 2rem;
-  font-size:30px;
+  margin-left: 2rem;
+  font-size:1.8rem;
   color:white;
+  height:3rem;
   text-decoration:none;
 }
   
@@ -69,7 +78,7 @@ const MyItemLogo = styled.article`
     position:absolute;
     bottom:-2px;
     font-size:30px;
-    letter-spacing:1.2px;;             
+    letter-spacing:1.2px;            
    }
 
    h1{
@@ -81,9 +90,17 @@ const MyItemLogo = styled.article`
   `
 
 const NavBar = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const [active, setActive] = useState(false);
+
+  const { scrollY } = useContext(MoviesContext)
+
   return (
 
-    <MyNavBarStyled >
+    <MyNavBarStyled scrollY={scrollY}>
       <MyItemLogo>
         <img src={logo} className="logo-corn" alt="Logo" />
         <div className="title-movies"

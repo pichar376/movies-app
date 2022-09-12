@@ -1,14 +1,31 @@
 import { useContext, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import styledComponents from "styled-components";
+import styled from "styled-components";
 import MoviesContext, { MoviesProvider } from "../../context/MoviesContext";
 import MovieSearch from "../../pages/MovieSearch/MovieSearch";
 import MovieCard from "../MovieCard/MovieCard";
 
-const MyCarruselStyle = styledComponents.div`
+const MyCarruselStyle = styled.div`
 display:flex;
 color:white;
 overflow-x:scroll;
+align-items:center;
+height:700px;
+padding:0 2rem;
+
+div:hover ~ div {
+  transform: translate3d(150px, 0px, 0px);
+  transition:all .45s ease-in; }
+
+&:hover div{
+  opacity:0.5;
+  transition:all .3s ease-in;
+}
+&:hover div:hover{
+  transform:scale(1.1);
+  opacity:1;
+  transition:all .3s ease-in;
+}
 
 &::-webkit-scrollbar {
   background: black;
@@ -19,6 +36,7 @@ overflow-x:scroll;
 &::-webkit-scrollbar-track {
   background:black;
    border-radius: 10px;
+   cursor:pointer;
 }
 
 &::-webkit-scrollbar-thumb {
@@ -28,35 +46,25 @@ overflow-x:scroll;
 `
 
 
-const Carrusel = ({ category }) => {
-
-  const { myListActive, setMyListActive, moviesList } = useContext(MoviesContext)
+const Carrusel = ({ category, title }) => {
 
 
 
 
-  //   if (!myListActive) {
-  //     const dataMovie = moviesList[0].res;
-  //     return
-  //     { <MovieCard title={dataMovie.title} duration={dataMovie.runtime} imgSrc={dataMovie.poster_path} movieId={dataMovie.id} /> }
 
-  //   moviesList.map((movie) => <div key={movie.res.id}><MovieCard title={movie.res.title} duration={movie.res.runtime} imgSrc={movie.res.poster_path} movieId={movie.res.id} />
-
-  //   </div>)
-  //   console.log(moviesList.res)
-
-  // }
 
   if (!category) {
     return <h1>Cargando...</h1>
   }
+
   return (
 
 
 
 
     <MyCarruselStyle>
-      {category.map((movie) => <div key={movie.res.id}><MovieCard title={movie.res.title} duration={movie.res.runtime} imgSrc={movie.res.poster_path} movieId={movie.res.id} />
+      <h1>{title}</h1>
+      {category.map((movie, index) => <div key={index}><MovieCard title={movie.res.title} duration={movie.res.runtime} imgSrc={movie.res.poster_path} movieId={movie.res.id} />
 
 
 

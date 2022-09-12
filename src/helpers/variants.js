@@ -53,4 +53,17 @@ const variantInput = {
     transition: "duration:1"
   },
 };
-export { descriptionVariants, pageVariant, pageVariantList, variantInput };
+
+const variantCard = {
+  out: {
+    opacity: 0,
+    x: "5vw",
+    y: 0,
+    transition: "duration:1"
+  },
+  in: {
+    opacity: 1,
+    x: 0,
+  }
+}
+export { descriptionVariants, pageVariant, pageVariantList, variantInput, variantCard };

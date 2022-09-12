@@ -38,7 +38,7 @@ const InputSearch = () => {
 
         {!clicked ? (<img src={searchIcon} onClick={handleClicked} />) :
           (<motion.input type="text" placeholder="
-        Search" aria-label="Username" aria-describedby="addon-wrapping" value={currentSearch} onChange={handleChange} autoFocus onBlur={handleBlur} variants={variantInput} initial="out" animate="in" exit="out" />)}
+        Search a Movie" aria-label="Username" aria-describedby="addon-wrapping" value={currentSearch} onChange={handleChange} autoFocus onBlur={handleBlur} variants={variantInput} initial="out" animate="in" exit="out" />)}
       </motion.div>
     </MyStyledSearch>
   );

@@ -24,24 +24,28 @@ display:grid;
 grid-template-columns:repeat(4,1fr);
 gap:4rem;
 
-.map-item{
+.map-item-movies{
 position:relative;
-width:100%;
+min-width:500px;
 height:auto;
 }
-  a{
-  position:absolute;
-  bottom:3rem;
-  left:3rem;
-  color:red;
+  
 
-}
 
 img{
 width:100%;
 height:500px;
 border-radius:40px;
 }
+
+}
+a{
+  position:absolute;
+  top:3rem;
+  left:3rem;
+  color:white;
+  text-decoration:none;
+  font-size:30px;
 
 }
 .heart{
@@ -72,13 +76,14 @@ a{
 `
 const FavoriteList = () => {
 
-  const { addToList } = useContext(MoviesContext);
+  const { addToList, validationMovies } = useContext(MoviesContext);
 
-  const { movieList, handleDelete, saveId } = useFavoriteList();
+  const { movieList, handleDelete } = useFavoriteList();
 
-  const moviesAdd = Object.values(addToList);
+  const moviesValues = Object.values(addToList);
 
-  if (moviesAdd.length === 0) {
+
+  if (moviesValues.every((el) => el === undefined)) {
     return (
       <motion.div initial="out" animate="in" exit="out" variants={pageVariant}>
 
@@ -99,7 +104,7 @@ const FavoriteList = () => {
       <motion.div initial="out" animate="in" exit="out" variants={pageVariantList} className="map-container">
 
         {movieList.map((movie) =>
-          <div key={movie.res.id} className="map-item">
+          <div key={movie.res.id} className="map-item-movies">
             <section className="heart" onClick={() => { handleDelete(movie.res.id) }}>
 
               <BsSuitHeartFill />

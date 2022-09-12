@@ -3,39 +3,32 @@ import MoviesContext, { MoviesProvider } from "../../../context/MoviesContext";
 
 const useFavoriteList = () => {
 
-  const { movies, addToList, setAddToList } = useContext(MoviesContext)
+  const { movies, addToList, setAddToList, addAndDeleteMovie } = useContext(MoviesContext);
 
+  const handleDelete = (movieId) => {
+    const saveId = Object.keys(addToList).map((el) => parseInt(el))
+    const newList = saveId.filter((movie) => movie != movieId)
 
+    return addAndDeleteMovie(movieId, true)
 
-  const saveId = Object.values(addToList);
+  }
 
+  const idMovies = Object.values(addToList)
   let movieList = [];
   if (movies.allMovies) {
 
-    movieList = movies.allMovies.filter((movie) => saveId.includes(movie.res.id));
+    movieList = movies.allMovies.filter((movie) => idMovies.includes(movie.res.id));
   }
 
 
-  const handleDelete = (movieId) => {
-
-    const newList = saveId.filter((movie) => movie != movieId)
-
-    setAddToList({
-      ...newList
-
-    })
-
-    // newList.map((movie) => setAddToList({
-    //   movie
-    // }))
 
 
 
-    console.log(addToList)
+  // newList.map((movie) => setAddToList({
+  //   movie
+  // }))
 
 
-
-  }
 
 
   // const listToFilter = Object.values(addToList).map((id) => movies.allMovies.res.filter((movieId) => movieId === id));
@@ -44,8 +37,7 @@ const useFavoriteList = () => {
 
   return {
     movieList,
-    handleDelete,
-    saveId
+    handleDelete
   }
 }
 

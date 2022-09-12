@@ -63,7 +63,7 @@ const Video = () => {
   return (
     < MyStyleVideo>
 
-      <video className="video" loop autoPlay muted={true}>
+      <video className="video" loop autoPlay muted={muted}>
 
         <source src={video} />
 
@@ -74,8 +74,8 @@ const Video = () => {
       < MyStyledVolume className="volume" onClick={handleMuted}>
         <img src={
           muted
-            ? "https://i.ibb.co/ZBggBTd/mute.png"
-            : "https://i.ibb.co/k6JLmFc/unmute.png"
+            ? "https://i.ibb.co/k6JLmFc/unmute.png"
+            : "https://i.ibb.co/ZBggBTd/mute.png"
         } alt="volume" />
       </ MyStyledVolume >
 

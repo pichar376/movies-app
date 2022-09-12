@@ -27,7 +27,9 @@ const useMovieSearch = () => {
   }
 
 
-  const moviesData = moviesList.map((movie) => movie.res);
+  const arrMovies = Object.values(moviesList)
+
+  const moviesData = arrMovies.map((movie) => movie.res);
 
   const moviesDataFinal = moviesData.map((movie) => movie)
 

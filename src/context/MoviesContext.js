@@ -13,14 +13,18 @@ const MoviesContext = createContext();
 const MoviesProvider = ({ children }) => {
   ;
   const [categoryList, setCategoryList] = useState({});
-  const [allMovies, setAllMovies] = useState([]);
   const [movies, setMovies] = useState({});
   const [loading, setLoading] = useState(false);
   const [myList, setMyList] = useState({});
   const [addToList, setAddToList] = useState({});
-  const [myListActive, setMyListActive] = useState(true);
   const [currentSearch, setCurrentSearch] = useState("");
-  const [moviesList, setMoviesList] = useState([]);
+  const [moviesList, setMoviesList] = useState({})
+  const [myMoviesList, setMyMoviesList] = useState({});
+  const [scrollY, setScrollY] = useState(0);
+  const [muted, setMuted] = useState(false);
+  const [volumeStatus, setVolumeStatus] = useState({
+    volume: "active"
+  });
 
 
 
@@ -73,11 +77,8 @@ const MoviesProvider = ({ children }) => {
 
 
 
-    // const finalCategoriesResults = await Promise.all(
-    //   promiseFinalCategoriesResults.map(
-    //     async (category) => await Promise.all(category)
-    //   )
-    // );
+
+
 
 
 
@@ -127,11 +128,8 @@ const MoviesProvider = ({ children }) => {
 
 
     return {
-      allMovies,
       movies,
-      myListActive,
       categoryList,
-      setMyListActive,
       currentSearch,
       setCurrentSearch,
       moviesList,
@@ -152,22 +150,56 @@ const MoviesProvider = ({ children }) => {
 
 
 
+  // find element for checkout in list
+  const addArray = Object.values(addToList)
+
+  const itemFind = (id) => {
+
+    const findItem = addArray.find((item => item.id === id))
+
+    return findItem
+  }
 
 
-  const listMoviesId = (id) => {
-    setAddToList({
-      ...addToList,
-      [id]: id,
-
-    })
-
-
-    console.log(addToList)
+  const validationMovies = () => {
+    const moviesValues = Object.values(addToList);
+    const idMoviesAdded = moviesValues.filter((movieId) => movieId !== undefined);
+    console.log(idMoviesAdded)
+    return idMoviesAdded
   }
 
 
 
 
+
+  const addAndDeleteMovie = (id, status) => {
+
+    switch (status) {
+      case undefined:
+        setAddToList({
+          ...addToList,
+          [id]: id,
+        })
+        break;
+      case null:
+        setAddToList({
+          ...addToList,
+          [id]: id,
+        })
+        break;
+      case true:
+        setAddToList({
+          ...addToList,
+          [id]: undefined,
+        })
+        break;
+
+      default:
+        break;
+    }
+
+
+  }
 
 
 
@@ -179,11 +211,19 @@ const MoviesProvider = ({ children }) => {
     setAddToList,
     setMyList,
     myList,
-    listMoviesId,
     setCurrentSearch,
     setMoviesList,
     currentSearch,
-    moviesList
+    moviesList,
+    scrollY,
+    setScrollY,
+    muted,
+    setMuted,
+    volumeStatus,
+    setVolumeStatus,
+    addAndDeleteMovie,
+    validationMovies,
+
 
   }
   return (

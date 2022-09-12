@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import MoviesContext from "../../../context/MoviesContext";
 
 const useVideo = () => {
-  const [scrollY, setScrollY] = useState(0);
-  const [muted, setMuted] = useState(true);
-  const [volumeStatus, setVolumeStatus] = useState({
-    volume: "active"
-  });
 
+  const { muted, setMuted, scrollY, setScrollY, volumeStatus, setVolumeStatus } = useContext(MoviesContext)
   useEffect(() => {
-    //console.log("Moviendo el Scroll");
+
 
 
 

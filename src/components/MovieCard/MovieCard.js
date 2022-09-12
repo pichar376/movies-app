@@ -1,51 +1,80 @@
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { AiOutlineHeart } from "react-icons/ai";
 import { BsSuitHeartFill } from "react-icons/bs";
-import styledComponents from "styled-components";
+import styled from "styled-components";
 import MoviesContext from "../../context/MoviesContext";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import useMovieCard from "./useMovieCard";
+import { motion } from "framer-motion"
+import { variantCard } from "../../helpers/variants";
 
-const MyMovieCardStyle = styledComponents.div`
+const MyMovieCardStyle = styled.div`
 
 display:flex;
 flex-flow:column wrap;
 position:relative;
 justify-content:flex-end;
-border:thin solid gray;
 width:500px;
 height:500px;
 border-radius:40px;
-margin:.7rem;
+margin:1.5rem;
 position:relative;
+transition:all .4s ease-in;
 
-
-.info{
-display:flex;
-flex-flow:column wrap;
-position:absolute;
-justify-content:flex-end;
-margin-bottom:1rem;
+.heart{
+  position:absolute;
+  top:0;
+  right:2rem;
+  font-size:2rem;
 }
  img{
   width:100%;
   height:100%;
-  border-radius:20px;
+  border-radius:40px;
  }
-
- h1{
-  position:absolute;
-  bottom:1rem;
-  left:1rem;
- }
-.heart{
-  position:absolute;
-  top:2rem;
-  right:2rem;
-  font-size:2rem;
-  
-
-}
 `
+const MyDescription = styled.article`
+
+display:flex;
+flex-flow:column wrap;
+position:absolute;
+justify-content:flex-end;
+margin:1rem;
+
+.title{
+display:flex;
+flex-wrap:wrap;
+
+  h2{
+    color:#ffffff99;
+    font-size:2.7rem;
+    font-weight:600;
+    transition:all .3s ease-in-out;
+
+    &:hover{
+      text-decoration:underLine;
+      color:white;
+      cursor:pointer;
+    }
+  }
+}
+
+span{
+  color:#ffffff97;
+  font-size:2rem;
+  transition:all .3s ease-in-out;
+}
+
+span:hover{
+text-decoration: underline;
+color:white;
+cursor:pointer;
+}
+
+
+`
+
+
 
 
 
@@ -53,30 +82,52 @@ margin-bottom:1rem;
 const MovieCard = ({ duration, title, imgSrc, movieId, validation, movieAdd }) => {
 
   const navigate = useNavigate();
-  const { listMoviesId } = useContext(MoviesContext);
+
+  const { addToList } = useContext(MoviesContext)
+
+  const {
+    addToMyList,
+    goDescription
+  } = useMovieCard();
 
 
-  const handleClick = () => {
-    console.log("enter")
-  }
 
-  const goDescription = () => {
-    navigate(`/description/${movieId}`)
-  }
+
+
+
+
+
+
+
+
+
   return (
+
+
     < MyMovieCardStyle >
-      <section className="heart" onClick={() => { listMoviesId(movieId) }}>
+      <motion.section className="heart" onClick={() => {
 
-        <BsSuitHeartFill />
+        addToMyList(movieId)
+      }} initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.5 }}>
+        {
+          addToList[`${movieId}`] ? (< BsSuitHeartFill />) : (<AiOutlineHeart />)
 
-      </section>
-      <img src={`https://image.tmdb.org/t/p/w500${imgSrc}`} />
-      <article className="info">
-        <h2 >{title}</h2>
+        }
+      </motion.section>
+      <img src={imgSrc ? `https://image.tmdb.org/t/p/w500${imgSrc}` : "https://picsum.photos/720"}
+      />
+      <MyDescription>
+        <div className="title"><h2>{title}</h2>
+        </div>
         <span>duration:{duration}</span>
-      </article>
-      <h1 onClick={goDescription} >Description</h1>
+        <span onClick={() => { goDescription(movieId) }} >Description</span>
+      </MyDescription>
     </MyMovieCardStyle >
+
+
+
 
 
   );

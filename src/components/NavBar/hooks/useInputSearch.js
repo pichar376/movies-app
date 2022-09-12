@@ -11,10 +11,6 @@ const useInputSearch = () => {
     setClicked(!clicked)
   }
 
-  useEffect(() => {
-    console.log(clicked)
-  }, [handleClicked]);
-
 
   const toggleInput = e => e.stopPropagation();
   const [clicked, setClicked] = useState(false);

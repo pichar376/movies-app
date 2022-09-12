@@ -1,6 +1,6 @@
 import styledComponents from "styled-components"
 
-import { useContext, useMemo } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import MoviesContext from "../../context/MoviesContext";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { useState } from "react";
@@ -56,6 +56,10 @@ gap:1rem;
 
 
 const MovieDescription = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { category, movies } = useContext(MoviesContext)
   const [movieCurrent, setMovieCurrent] = useState({});
