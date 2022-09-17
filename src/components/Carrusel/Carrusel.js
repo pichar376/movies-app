@@ -5,11 +5,12 @@ import MoviesContext, { MoviesProvider } from "../../context/MoviesContext";
 import MovieSearch from "../../pages/MovieSearch/MovieSearch";
 import MovieCard from "../MovieCard/MovieCard";
 
-const MyCarruselStyle = styled.div`
+const MyCarruselContainer = styled.div`
 display:flex;
+position:relative;
+flex-flow:column wrap;
 color:white;
 overflow-x:scroll;
-align-items:center;
 height:700px;
 padding:0 2rem;
 
@@ -43,6 +44,21 @@ div:hover ~ div {
   background: white;
    border-radius: 10px;
 }
+.title{
+  display:flex;
+  justify-content:flex-start;
+
+    h1{
+      font-size:4rem;
+    }
+
+
+}
+
+.carousel{
+  display:flex;
+
+}
 `
 
 
@@ -62,16 +78,18 @@ const Carrusel = ({ category, title }) => {
 
 
 
-    <MyCarruselStyle>
-      <h1>{title}</h1>
-      {category.map((movie, index) => <div key={index}><MovieCard title={movie.res.title} duration={movie.res.runtime} imgSrc={movie.res.poster_path} movieId={movie.res.id} />
+    <MyCarruselContainer>
+      <section className="title">
+        <h1>{title}</h1>
+      </section>
+      <section className="carousel">
 
 
-
-
-      </div>)
-      }
-    </MyCarruselStyle>
+        {category.map((movie, index) => <div key={index}
+        ><MovieCard title={movie.res.title} duration={movie.res.runtime} imgSrc={movie.res.poster_path} movieId={movie.res.id} />
+        </div>)}
+      </section>
+    </MyCarruselContainer>
   )
 }
 

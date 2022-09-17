@@ -29,13 +29,13 @@ const pageVariant = {
 const pageVariantList = {
   in: {
     opacity: 1,
-    x: 0,
+    x: 150,
     y: 0,
-    transition: "duration:.3"
+    transition: "all .45s ease-out",
   },
   out: {
     opacity: 0,
-    x: "5vw",
+    x: 0,
     y: 0,
   },
 };

@@ -1,4 +1,4 @@
-import styledComponents from "styled-components"
+import styled from "styled-components"
 
 import { useContext, useEffect, useMemo } from "react";
 import MoviesContext from "../../context/MoviesContext";
@@ -10,7 +10,7 @@ import {
 import { motion } from "framer-motion"
 
 
-const MyDescriptionStyle = styledComponents.div`
+const MyDescriptionStyle = styled.div`
   color:white;
   margin:0 14rem;
   position:relative;
@@ -34,7 +34,7 @@ top:3rem;
 font-size:30px;
   }
   `
-const MyContainerDataMovie = styledComponents.div`
+const MyContainerDataMovie = styled.div`
 display:flex;
 flex-flow:column wrap;
 gap:1rem;
@@ -58,7 +58,7 @@ gap:1rem;
 const MovieDescription = () => {
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo(9, 0);
   }, []);
 
   const { category, movies } = useContext(MoviesContext)

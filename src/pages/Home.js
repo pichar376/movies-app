@@ -25,24 +25,27 @@ const Home = () => {
 
     <div>
 
-      <Video />
-      <MyContainerCarrusel>
 
+
+      <Video />
+
+      <MyContainerCarrusel>
         <motion.div initial="out" animate="in" exit="out" variants={pageVariant}>
 
-          <Carrusel category={categoryList.popularData} carousel-title={popularMovies} />
+          <Carrusel category={categoryList.popularData} title={popularMovies} />
 
-          <Carrusel category={categoryList.kidsData} carousel-title={
+          <Carrusel category={categoryList.kidsData} title={
             kidsMovies
           } />
 
-          <Carrusel category={categoryList.dramaData} carousel-title={dramaMovies} />
+          <Carrusel category={categoryList.dramaData} title={dramaMovies} />
 
-          <Carrusel category={categoryList.oldData} carousel-title={oldMovies} />
+          <Carrusel category={categoryList.oldData} title={oldMovies} />
 
-          <Carrusel category={categoryList.scienceFictionData} carousel-title={fictionMovies} />
+          <Carrusel category={categoryList.scienceFictionData} title={fictionMovies} />
         </motion.div>
       </MyContainerCarrusel>
+
     </div>
   );
 }

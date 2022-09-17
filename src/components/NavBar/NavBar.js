@@ -6,6 +6,7 @@ import useMovieSearch from "../../pages/MovieSearch/useMovieSearch";
 import logo from "./popcorn_PNG33.png";
 import search from "./search.png"
 import InputSearch from "./InputSearch";
+import useVideo from "../Video/hooks/useVideo";
 
 
 
@@ -89,14 +90,18 @@ const MyItemLogo = styled.article`
   }
   `
 
+
 const NavBar = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+
   }, []);
 
-  const [active, setActive] = useState(false);
 
-  const { scrollY } = useContext(MoviesContext)
+
+
+  const { scrollY } = useVideo()
+
 
   return (
 

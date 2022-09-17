@@ -7,26 +7,47 @@ import MoviesContext, { MoviesProvider } from "../../context/MoviesContext";
 import useFavoriteList from "./hooks/useFavoriteList";
 import { motion } from "framer-motion"
 import { pageVariant, pageVariantList } from "../../helpers/variants";
+import Video from "../../components/Video/Video";
 
 
 
 
 const MyListStyled = styled.div`
 color:white;
- 
+margin-top:9rem;
+opacity:1;
 
+
+ 
+.map-container:hover>div{
+  opacity:0.5;
+  transition:.45s ease-in-out;
+}
 
 
 .map-container{
-  margin:9rem auto;
-  width:90%;
+  margin:5rem auto;
+  width:70%;
 display:grid;
+justify-content:center;
 grid-template-columns:repeat(4,1fr);
-gap:4rem;
+gap:3rem;
+transition:all .4s ease-in-out;
+&:hover{
+opacity: 0.5;
+transition:all .4s ease-in;
+}
 
+.map-item-movies:hover{
+  transform: scale(1.1);
+  transition:all .3s ease-in-out;
+  opacity:1;
+}
 .map-item-movies{
 position:relative;
-min-width:500px;
+margin-top:3rem;
+min-width:400px;
+max-width:600px;
 height:auto;
 }
   
@@ -39,6 +60,8 @@ border-radius:40px;
 }
 
 }
+
+
 a{
   position:absolute;
   top:3rem;
@@ -78,18 +101,16 @@ const FavoriteList = () => {
 
   const { addToList, validationMovies } = useContext(MoviesContext);
 
-  const { movieList, handleDelete } = useFavoriteList();
+  const { movieList, handleDelete, moviesWithOutRepeating } = useFavoriteList();
 
   const moviesValues = Object.values(addToList);
 
-
-  if (moviesValues.every((el) => el === undefined)) {
+  if (!moviesWithOutRepeating || moviesWithOutRepeating.length === 0) {
     return (
-      <motion.div initial="out" animate="in" exit="out" variants={pageVariant}>
-
+      <motion.div initial="out" animate="in" exit="out" variants={pageVariant} transition={{ duration: 3 }}>
         <StyledWithOutMovie>
           <motion.h1 className="no-movies" initial={{ color: "grey", opacity: 0 }} transition={{ duration: 1 }} animate={{ y: 100, opacity: 1, color: "white", }}>No movies Yet</motion.h1>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .5, delay: 1 }}>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .5, delay: .7 }}>
 
             <Link to="/">Go home add to movies</Link>
           </motion.div>
@@ -103,7 +124,7 @@ const FavoriteList = () => {
 
       <motion.div initial="out" animate="in" exit="out" variants={pageVariantList} className="map-container">
 
-        {movieList.map((movie) =>
+        {moviesWithOutRepeating.map((movie) =>
           <div key={movie.res.id} className="map-item-movies">
             <section className="heart" onClick={() => { handleDelete(movie.res.id) }}>
 
@@ -130,5 +151,8 @@ const FavoriteList = () => {
 }
 
 export default FavoriteList;
+
+
+
 
 

@@ -4,6 +4,7 @@ import useVideo from "./hooks/useVideo";
 import video from "./joker.mp4";
 import volume from "./alto-volumen.png"
 import mute from "./Mute-Sound-PNG-Free-Download.png"
+import { useState } from "react";
 
 const MyStyleVideo = styled.div`
 position:relative;
@@ -11,16 +12,16 @@ position:relative;
   margin:3rem 0 0 0;
   width:70vw;
 background-color:grey;
-
+}
 svg:hover {
   cursor: pointer;
 }  
-}
+
 .video {
   width: 100%;
   object-fit: cover;
-  min-height: 1000px;
-  max-height: 100vh;
+  min-height: 900px;
+  max-height: 1200px;
    }
 `
 
@@ -56,14 +57,13 @@ const MyStyledVolume = styled.div`
 `
 const Video = () => {
 
-  const { muted, scrollY, handleMuted } = useVideo()
-  const minWidth = "450px";
-  const maxWidth = "1200px";
+  const { handleMuted, volumeController } = useVideo()
+
 
   return (
     < MyStyleVideo>
 
-      <video className="video" loop autoPlay muted={muted}>
+      <video className="video" loop autoPlay muted={volumeController.videoMuted}>
 
         <source src={video} />
 
@@ -73,7 +73,7 @@ const Video = () => {
 
       < MyStyledVolume className="volume" onClick={handleMuted}>
         <img src={
-          muted
+          volumeController.videoMuted
             ? "https://i.ibb.co/k6JLmFc/unmute.png"
             : "https://i.ibb.co/ZBggBTd/mute.png"
         } alt="volume" />

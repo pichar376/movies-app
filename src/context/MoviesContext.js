@@ -20,11 +20,9 @@ const MoviesProvider = ({ children }) => {
   const [currentSearch, setCurrentSearch] = useState("");
   const [moviesList, setMoviesList] = useState({})
   const [myMoviesList, setMyMoviesList] = useState({});
-  const [scrollY, setScrollY] = useState(0);
-  const [muted, setMuted] = useState(false);
-  const [volumeStatus, setVolumeStatus] = useState({
-    volume: "active"
-  });
+
+
+
 
 
 
@@ -215,12 +213,6 @@ const MoviesProvider = ({ children }) => {
     setMoviesList,
     currentSearch,
     moviesList,
-    scrollY,
-    setScrollY,
-    muted,
-    setMuted,
-    volumeStatus,
-    setVolumeStatus,
     addAndDeleteMovie,
     validationMovies,
 

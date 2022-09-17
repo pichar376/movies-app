@@ -27,7 +27,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/not-found" element={<NotFound />} />
+            <Route path="/*" element={<NotFound />} />
             <Route path="/favorite-list" element={<FavoriteList />} />
             <Route path="/movie-search/:params" element={<MovieSearch />} />
             <Route path="/description/:id" element={<MovieDescription />} />
