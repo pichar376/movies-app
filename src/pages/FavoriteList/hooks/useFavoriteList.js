@@ -28,11 +28,8 @@ const useFavoriteList = () => {
   }
   movieList = movies.allMovies.filter((movie) => idMovies.includes(movie.res.id));
 
-  // moviesWihtOutRepeating = movieList.filter((currentMovie, array, currentIndex) => {
-  //   return (
-  //     array.findIndex((arrayElement) => JSON.stringify(arrayElement) === JSON.stringify(currentMovie)) === currentIndex);
-  // }
-  // )
+
+
 
   moviesWithOutRepeating = movieList.filter(
     (currentMovie, currentIndex, array) => {
@@ -44,22 +41,6 @@ const useFavoriteList = () => {
       );
     }
   );
-
-
-
-
-
-
-  // newList.map((movie) => setAddToList({
-  //   movie
-  // }))
-
-
-
-
-  // const listToFilter = Object.values(addToList).map((id) => movies.allMovies.res.filter((movieId) => movieId === id));
-
-
 
   return {
     movieList,

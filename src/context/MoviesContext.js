@@ -199,7 +199,9 @@ const MoviesProvider = ({ children }) => {
 
   }
 
-
+  const goBack = (navigate) => {
+    navigate("/")
+  }
 
 
   const data = {
@@ -215,6 +217,7 @@ const MoviesProvider = ({ children }) => {
     moviesList,
     addAndDeleteMovie,
     validationMovies,
+    goBack
 
 
   }

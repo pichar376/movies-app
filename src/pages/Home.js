@@ -1,20 +1,20 @@
 import { useContext, useEffect } from "react";
 import Carrusel from "../components/Carrusel/Carrusel";
 import MoviesContext from "../context/MoviesContext";
-import { useLocation, Link } from "react-router-dom";
 import Video from "../components/Video/Video";
 import styled from "styled-components";
 import { motion } from "framer-motion"
 import { pageVariant } from "../helpers/variants";
 import { dramaMovies, fictionMovies, kidsMovies, oldMovies, popularMovies } from "../helpers/titlesMovies";
+import Loader from "../components/Loader/Loader";
 
 const MyContainerCarrusel = styled.div`
-margin:0 5rem;
+display:flex;
+flex-flow:row wrap;
+
+
 `
 const Home = () => {
-
-
-
 
 
   const { categoryList } = useContext(MoviesContext);
@@ -32,8 +32,10 @@ const Home = () => {
       <MyContainerCarrusel>
         <motion.div initial="out" animate="in" exit="out" variants={pageVariant}>
 
-          <Carrusel category={categoryList.popularData} title={popularMovies} />
+          <section className="popular">
 
+            <Carrusel category={categoryList.popularData} title={popularMovies} />
+          </section>
           <Carrusel category={categoryList.kidsData} title={
             kidsMovies
           } />

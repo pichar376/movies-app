@@ -3,16 +3,28 @@ import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import MoviesContext, { MoviesProvider } from "../../context/MoviesContext";
 import MovieSearch from "../../pages/MovieSearch/MovieSearch";
+import Loader from "../Loader/Loader";
 import MovieCard from "../MovieCard/MovieCard";
 
 const MyCarruselContainer = styled.div`
 display:flex;
 position:relative;
-flex-flow:column wrap;
+flex-flow:row wrap;
 color:white;
 overflow-x:scroll;
-height:700px;
-padding:0 2rem;
+width:100vw;
+height:320px;
+align-items:center;
+
+
+@media(min-width:400px){
+  height:300px;
+  margin-left:0;
+  width:100vw;
+}
+@media(min-width:960px){
+height:400px;
+}
 
 div:hover ~ div {
   transform: translate3d(150px, 0px, 0px);
@@ -70,7 +82,7 @@ const Carrusel = ({ category, title }) => {
 
 
   if (!category) {
-    return <h1>Cargando...</h1>
+    return <Loader />
   }
 
   return (
@@ -80,7 +92,7 @@ const Carrusel = ({ category, title }) => {
 
     <MyCarruselContainer>
       <section className="title">
-        <h1>{title}</h1>
+        <h2>{title}</h2>
       </section>
       <section className="carousel">
 

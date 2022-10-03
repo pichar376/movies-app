@@ -12,25 +12,39 @@ const MyMovieCardStyle = styled.div`
 
 display:flex;
 flex-flow:column wrap;
-position:relative;
 justify-content:flex-end;
-width:500px;
-height:500px;
-border-radius:40px;
-margin:1.5rem;
+margin:0 1rem;;
 position:relative;
 transition:all .4s ease-in;
+width:250px;
+height:250px;
+
+@media(min-width:960px){
+margin:0 1rem;
+}
 
 .heart{
+  
   position:absolute;
-  top:0;
-  right:2rem;
-  font-size:2rem;
+  top:1rem;
+  right:1rem;
+  font-size:1rem;
+
+  &:hover{
+    transform:scale(1.1);
+  
+  }
 }
  img{
-  width:100%;
-  height:100%;
-  border-radius:40px;
+  width:250px;
+  height:250px;
+  object-fit:cover;
+  border-radius: 20px;
+
+  @media(max-width:576px){
+    width:250px;
+    heigth:250px;
+  }
  }
 `
 const MyDescription = styled.article`
@@ -44,32 +58,19 @@ margin:1rem;
 .title{
 display:flex;
 flex-wrap:wrap;
-
-  h2{
+}
+  .description-details{
     color:#ffffff99;
-    font-size:2.7rem;
-    font-weight:600;
+    font-weight:700;
     transition:all .3s ease-in-out;
-
+   margin:0;
+   transition:all .3s ease-in-out;
     &:hover{
       text-decoration:underLine;
       color:white;
       cursor:pointer;
     }
   }
-}
-
-span{
-  color:#ffffff97;
-  font-size:2rem;
-  transition:all .3s ease-in-out;
-}
-
-span:hover{
-text-decoration: underline;
-color:white;
-cursor:pointer;
-}
 
 
 `
@@ -79,7 +80,10 @@ cursor:pointer;
 
 
 
-const MovieCard = ({ duration, title, imgSrc, movieId, validation, movieAdd }) => {
+
+
+
+const MovieCard = ({ duration, title, imgSrc, movieId }) => {
 
   const navigate = useNavigate();
 
@@ -89,17 +93,6 @@ const MovieCard = ({ duration, title, imgSrc, movieId, validation, movieAdd }) =
     addToMyList,
     goDescription
   } = useMovieCard();
-
-
-
-
-
-
-
-
-
-
-
 
   return (
 
@@ -119,10 +112,10 @@ const MovieCard = ({ duration, title, imgSrc, movieId, validation, movieAdd }) =
       <img src={imgSrc ? `https://image.tmdb.org/t/p/w500${imgSrc}` : "https://picsum.photos/720"}
       />
       <MyDescription>
-        <div className="title"><h2>{title}</h2>
+        <div className="title"><p className="description-details">{title}</p>
         </div>
-        <span>duration:{duration}</span>
-        <span onClick={() => { goDescription(movieId) }} >Description</span>
+        <span className="description-details">duration:{duration}</span>
+        <span className="description-details" onClick={() => { goDescription(movieId) }} >Description</span>
       </MyDescription>
     </MyMovieCardStyle >
 

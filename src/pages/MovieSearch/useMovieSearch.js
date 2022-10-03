@@ -35,16 +35,16 @@ const useMovieSearch = () => {
 
 
 
+  console.log(moviesList)
 
-
-  const filterMovies = (terminoBusqueda) => {
+  const filterMovies = (searchElement) => {
     const titlesMovies = allMovies.map((el) => el.res.title)
-    const resultadosBusqueda = titlesMovies.filter((elemento) => {
-      if (elemento.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())) {
-        return elemento;
+    const searchResult = titlesMovies.filter((element) => {
+      if (element.toString().toLowerCase().includes(searchElement.toLowerCase())) {
+        return element;
       }
     });
-    const filteredMoviesData = allMovies.filter((movie) => resultadosBusqueda.includes(movie.res.title))
+    const filteredMoviesData = allMovies.filter((movie) => searchResult.includes(movie.res.title))
 
     setMoviesList(filteredMoviesData)
   }

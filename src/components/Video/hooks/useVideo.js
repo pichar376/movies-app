@@ -36,13 +36,6 @@ const useVideo = () => {
     if (scrollY < 750 && volumeController.statusVolume === "active") {
       setVolumeController({ ...volumeController, videoMuted: false })
     }
-
-    console.log(scrollY)
-
-
-
-
-
   }, [scrollY]);
 
   const handleMuted = () => {

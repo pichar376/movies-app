@@ -8,11 +8,8 @@ import { useState } from "react";
 
 const MyStyleVideo = styled.div`
 position:relative;
-@media(max-width:770px){
-  margin:3rem 0 0 0;
-  width:70vw;
-background-color:grey;
-}
+
+
 svg:hover {
   cursor: pointer;
 }  
@@ -20,36 +17,59 @@ svg:hover {
 .video {
   width: 100%;
   object-fit: cover;
-  min-height: 900px;
-  max-height: 1200px;
+  min-height: 300px;
+  max-height: 500px;
+  @media (min-widht:1200px) {
+
+    height:1200px;
+    
    }
-`
+   }
+
+   
+   
+   `
 
 const MyStyledVolume = styled.div`
   position: absolute;
   right: 0;
-  bottom: 42vh;
+  bottom:40%;
   margin-right: 5.5vw;
-  height:7.5rem;
-  width: 7.5rem;
+  height:60px;
+  width:60px;
   outline: none;
   background-color: Transparent;
-  border: 1px solid white;
+  border: .5px solid white;
   color: white;
   border-radius: 50%;
   transition: 200ms;
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer; 
+
+  @media (max-width:678px){
+     height:40px;
+     width:40px;
+     bottom:10%;
+
+       }
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);
     transform: scale(1.04);
-    transition: 200ms; }
+    transition: 200ms;
+   cursor:poineter;
+  }
    img {
-    height: 5rem;
-    width: 5rem;
+    height: 3.5rem;
+    width:3.5rem;
    padding:15px;
+
+   @media(max-width:678px){
+      height: 3rem;
+      width:3rem;
+  
+     
+   }
   }
     img::selection {
       color: rgba(255, 255, 255, 0.8); }

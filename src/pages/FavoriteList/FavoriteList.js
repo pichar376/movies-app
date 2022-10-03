@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { Link, useLocation, useParams } from "react-router-dom";
 import styled from "styled-components"
@@ -14,68 +14,51 @@ import Video from "../../components/Video/Video";
 
 const MyListStyled = styled.div`
 color:white;
-margin-top:9rem;
-opacity:1;
-
+width:100%;
 
  
-.map-container:hover>div{
-  opacity:0.5;
-  transition:.45s ease-in-out;
-}
-
 
 .map-container{
-  margin:5rem auto;
-  width:70%;
-display:grid;
-justify-content:center;
-grid-template-columns:repeat(4,1fr);
-gap:3rem;
-transition:all .4s ease-in-out;
-&:hover{
-opacity: 0.5;
-transition:all .4s ease-in;
-}
+  margin:7rem 2rem 4rem 2rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  min-width:250px;
+  max-width:80%;
+  gap:1rem;
 
-.map-item-movies:hover{
-  transform: scale(1.1);
-  transition:all .3s ease-in-out;
-  opacity:1;
-}
-.map-item-movies{
-position:relative;
-margin-top:3rem;
-min-width:400px;
-max-width:600px;
-height:auto;
+
+  &>*{
+    width: 250px;
+  height: 250px;
+  position: relative;
+  border-radius: 20px;
+  transition: 450ms;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  }
+  
 }
   
 
 
-img{
-width:100%;
-height:500px;
-border-radius:40px;
-}
-
-}
 
 
-a{
+.back{
   position:absolute;
-  top:3rem;
-  left:3rem;
+  top:0;
+  left:0;
+  margin-top:6rem;
+  margin-left:3rem;
   color:white;
   text-decoration:none;
-  font-size:30px;
 
 }
 .heart{
   position:absolute;
-  top:2rem;
-  right:2rem;
-  font-size:2rem;
+  top:1rem;
+  right:1rem;
+  font-size:1rem;
   
 
 }
@@ -92,12 +75,17 @@ font-size:40px;
   font-size:60px;
   color:white;
 }
-a{
+.back{
   text-decoration:none;
   color:wite;
 }
 `
 const FavoriteList = () => {
+
+  useEffect(() => {
+    window.scrollTo(9, 0);
+  }, []);
+
 
   const { addToList, validationMovies } = useContext(MoviesContext);
 
@@ -120,22 +108,15 @@ const FavoriteList = () => {
   };
   return (
     <MyListStyled>
-      <Link to="/">Go Home</Link>
+      <Link className="back" to="/">Go Home</Link>
 
-      <motion.div initial="out" animate="in" exit="out" variants={pageVariantList} className="map-container">
+      <motion.div initial="out" animate="in" exit="out" variants={pageVariantList}
+        className="map-container">
 
         {moviesWithOutRepeating.map((movie) =>
-          <div key={movie.res.id} className="map-item-movies">
-            <section className="heart" onClick={() => { handleDelete(movie.res.id) }}>
+          <div key={movie.res.id}>
 
-              <BsSuitHeartFill />
-
-            </section>
-            <Link className="link" to={{ pathname: `/description/${movie.res.id}` }}>Description</Link ><img src={
-              !movie.res.poster_path
-                ? "https://picsum.photos/720"
-                : `https://image.tmdb.org/t/p/w500${movie.res.poster_path}`
-            } alt="poster" />
+            <MovieCard duration={movie.res.runtime} title={movie.res.title} imgSrc={movie.res.poster_path} movieId={movie.res.id} />
 
 
           </div >

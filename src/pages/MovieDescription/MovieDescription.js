@@ -1,55 +1,91 @@
 import styled from "styled-components"
 
-import { useContext, useEffect, useMemo } from "react";
-import MoviesContext from "../../context/MoviesContext";
-import { Link, useLocation, useParams } from "react-router-dom";
-import { useState } from "react";
+
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import {
   descriptionVariants
 } from "../../helpers/variants";
 import { motion } from "framer-motion"
+import useMovieDescription from "./hooks/useMovieDescription"
+import { useEffect } from "react";
+
 
 
 const MyDescriptionStyle = styled.div`
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
   color:white;
-  margin:0 14rem;
+  margin:0 2rem;
   position:relative;
+  min-width:250px;
 
-  img{
-    width:100%;
-  }
+.container-img{
+  align-items:center;
+  min-width:250px;
 
-  h1{
-    font-size:55px;
-    margin:2rem 0;
+
+img{
+  width:100%;
+}
+}
+  .title{
+    font-size:4rem;
+    margin:4rem;
     text-align:center;
+
+    @media(max-width:576px){
+      font-size:2rem;
+      margin: 3rem;
+    }
+
   }
 
   .go-back{
-width:10rem;
-height:2rem;
-position:absolute;
-right:-12rem;
-top:3rem;
-font-size:30px;
+display:flex;
+flex-flow:row wrap;
+justify-content:center;
+margin-top:8rem;
+margin-bottom:0;
+
+a{
+  text-decoration:none;
+   color:white;
+}
   }
   `
 const MyContainerDataMovie = styled.div`
+width:80%;
 display:flex;
+margin: 3rem auto;
 flex-flow:column wrap;
 gap:1rem;
- .item-data-movie{
+ &>*{
+  margin: 0 1rem;
     display:flex;
     flex-flow:column wrap;
-    background-color:#045;
+       background-color:rgba(255, 255, 255, 0.1);
+    border-radius:10px;
+    padding:1rem;
+    
+
   }
-  h2{
-    font-size:35px;
+  .title-descriptions{
+    color:white;
+    @media(max-width:576px){
+      font-size:18px;
+    }
   }
   p{
-    font-size:25px;
-  }
+  
+    color:#ffffff98;
 
+    @media(max-width:576px){
+      font-size:14px;
+    }
+  }
 
 `
 
@@ -61,75 +97,66 @@ const MovieDescription = () => {
     window.scrollTo(9, 0);
   }, []);
 
-  const { category, movies } = useContext(MoviesContext)
-  const [movieCurrent, setMovieCurrent] = useState({});
-
-
-  // if (!props.location.state == undefined) {
-  //   return (
-  //     <div>
-  //       <h1>no hay peliculas aun</h1>
-  //     </div>
-  //   )
-  // }
-
-
-  // const { poster_path, title } = props.location.state;
-  const { id } = useParams()
-
-
-
-
-
-  const itemFiltered = movies.allMovies.filter((item) => item.res.id == id)
-
-  const currentMovie = itemFiltered.map((item) => item)
-
-  const infoMovie = currentMovie[0].res;
-
-
+  const { infoMovie } = useMovieDescription()
 
   const { title, runtime, poster_path, overview, original_language, vote_average, popularity, vote_count, release_date } = infoMovie;
 
 
   return (
-    <MyDescriptionStyle>
-      <motion.div initial="out" animate="in" exit="out" variants={
-        descriptionVariants}>
-
-        <Link to="/" className="go-back">Go Back</Link>
-        <h1>{title}</h1>
-        <img src={
-          poster_path === "https://picsum.photos/720"
-            ? "https://picsum.photos/720"
-            : `https://image.tmdb.org/t/p/w500${poster_path}`
-        } />
-        <MyContainerDataMovie>
 
 
-          <article class="item-data-movie"><h2>Duration</h2><p>
-          </p>{runtime}</article>
-          <article class="item-data-movie"><h2>Language</h2><p>{original_language}
-          </p></article>
-          <article class="item-data-movie"><h2>Description</h2><p>{overview}
-          </p>
-          </article>
-          <article class="item-data-movie"><h2>Popularity</h2><p>{popularity}
-          </p>
-          </article>
-          <article class="item-data-movie"><h2>Vote Average</h2><p>{vote_average}
-          </p></article>
-          <article class="item-data-movie"><h2>Total Votes</h2><p>{vote_count}
-          </p>
-          </article>
-          <article class="item-data-movie"><h2>Release Date</h2><p>{release_date}
-          </p>
-          </article>
+    <motion.div initial="out" animate="in" exit="out" variants={
+      descriptionVariants}>
+      <MyDescriptionStyle>
+        <Helmet>
+          <title>{title}</title>
+          <meta
+            name="description"
+            content="Page to know all information about your selected movie"
+          />
+        </Helmet>
+        <div className="go-back">
+
+          <Link to="/">Go Back</Link>
+
+        </div>
+        <h1 className="title">{title}</h1>
+        <section className="container-img">
+          <img src={
+            poster_path === "https://picsum.photos/720"
+              ? "https://picsum.photos/720"
+              : `https://image.tmdb.org/t/p/w500${poster_path}`
+          } />
+        </section>
+      </MyDescriptionStyle>
+      <MyContainerDataMovie>
 
 
-        </MyContainerDataMovie>
-      </motion.div>
-    </MyDescriptionStyle>
+        <article><p className="title-descriptions">Duration:</p><p>{runtime}
+        </p>
+        </article>
+        <article><p className="title-descriptions">Language:</p><p>{original_language}
+        </p></article>
+        <article><p className="title-descriptions">Description:</p><p>{overview}
+        </p>
+        </article>
+        <article><p className="title-descriptions">Popularity:</p><p>{popularity}
+        </p>
+        </article>
+        <article><p className="title-descriptions">Vote Average</p><p>{vote_average}
+        </p></article>
+        <article ><p className="title-descriptions">Total Votes</p><p>{vote_count}
+        </p>
+        </article>
+        <article ><p className="title-descriptions">Release Date</p><p>{release_date}
+        </p>
+        </article>
+
+
+      </MyContainerDataMovie>
+    </motion.div>
+
+
   );
 }
 

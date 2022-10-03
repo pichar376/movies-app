@@ -1,5 +1,6 @@
 html {
   box-sizing: border-box;
+  width: 100%;
 }
 *,
 *:after,
@@ -7,9 +8,13 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+  font-family: "Poppins", sans-serif;
 }
 body {
   overflow-x: hidden;
+  background-color: black;
+  min-height: 100vh;
+  min-width: 100vw;
 }
 body::-webkit-scrollbar {
   background: black;
