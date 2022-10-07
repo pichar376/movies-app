@@ -1,10 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled, { keyframes } from "styled-components";
-import MoviesContext from "../../context/MoviesContext";
-import useMovieSearch from "../../pages/MovieSearch/useMovieSearch";
 import logo from "./popcorn_PNG33.png";
-import search from "./search.png"
 import InputSearch from "./InputSearch";
 import useVideo from "../Video/hooks/useVideo";
 

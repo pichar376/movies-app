@@ -7,6 +7,8 @@ import { motion } from "framer-motion"
 import { pageVariant } from "../helpers/variants";
 import { dramaMovies, fictionMovies, kidsMovies, oldMovies, popularMovies } from "../helpers/titlesMovies";
 import Loader from "../components/Loader/Loader";
+import { Helmet } from "react-helmet";
+import NotFound from "./NotFound";
 
 const MyContainerCarrusel = styled.div`
 display:flex;
@@ -17,7 +19,9 @@ flex-flow:row wrap;
 const Home = () => {
 
 
-  const { categoryList } = useContext(MoviesContext);
+  const { categoryList, } = useContext(MoviesContext);
+
+
 
 
 
@@ -28,6 +32,13 @@ const Home = () => {
 
 
       <Video />
+      <Helmet >
+        <title>Movies</title>
+        <meta
+          name="home"
+          content="main container"
+        />
+      </Helmet >
 
       <MyContainerCarrusel>
         <motion.div initial="out" animate="in" exit="out" variants={pageVariant}>

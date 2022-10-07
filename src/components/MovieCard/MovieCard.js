@@ -1,12 +1,10 @@
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BsSuitHeartFill } from "react-icons/bs";
 import styled from "styled-components";
 import MoviesContext from "../../context/MoviesContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import useMovieCard from "./useMovieCard";
 import { motion } from "framer-motion"
-import { variantCard } from "../../helpers/variants";
 
 const MyMovieCardStyle = styled.div`
 
@@ -85,13 +83,14 @@ flex-wrap:wrap;
 
 const MovieCard = ({ duration, title, imgSrc, movieId }) => {
 
-  const navigate = useNavigate();
-
   const { addToList } = useContext(MoviesContext)
 
+
+
+
   const {
-    addToMyList,
-    goDescription
+    goDescription,
+    deleteMovie
   } = useMovieCard();
 
   return (
@@ -100,7 +99,7 @@ const MovieCard = ({ duration, title, imgSrc, movieId }) => {
     < MyMovieCardStyle >
       <motion.section className="heart" onClick={() => {
 
-        addToMyList(movieId)
+        deleteMovie(movieId)
       }} initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.5 }}>

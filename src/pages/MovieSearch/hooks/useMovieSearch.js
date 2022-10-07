@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import MoviesContext, { MoviesProvider } from "../../context/MoviesContext";
+import MoviesContext, { MoviesProvider } from "../../../context/MoviesContext";
 
 
 const useMovieSearch = () => {
 
-  const { movies, currentSearch, moviesList, setMoviesList, setCurrentSearch } = useContext(MoviesContext)
+  const { movies, moviesList, setMoviesList, setCurrentSearch } = useContext(MoviesContext)
 
   const { allMovies } = movies;
 
@@ -20,7 +20,7 @@ const useMovieSearch = () => {
     setCurrentSearch(e.target.value)
     filterMovies(e.target.value)
     navigate(`/movie-search/${e.target.value}`)
-
+    console.log()
     if (e.target.value === "") {
       navigate("/")
     }
@@ -32,10 +32,6 @@ const useMovieSearch = () => {
   const moviesData = arrMovies.map((movie) => movie.res);
 
   const moviesDataFinal = moviesData.map((movie) => movie)
-
-
-
-  console.log(moviesList)
 
   const filterMovies = (searchElement) => {
     const titlesMovies = allMovies.map((el) => el.res.title)
@@ -49,22 +45,18 @@ const useMovieSearch = () => {
     setMoviesList(filteredMoviesData)
   }
 
-  // const moviesMatches = Object.values(currentSearch)
 
-  // const moviesFiltered = allMovies.filter((movie) => moviesMatches.includes(movie.res.title))
-  // console.log(moviesFiltered)
 
   return {
     handleChange,
     moviesDataFinal,
+    moviesList
   }
 }
 
 export default useMovieSearch;
 
-// const handleChange = e => {
-//   setBusqueda(e.target.value);
-//   filtrar(e.target.value);
-// }
+
+
 
 

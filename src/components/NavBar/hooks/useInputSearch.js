@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MoviesContext from "../../../context/MoviesContext";
-import useMovieSearch from "../../../pages/MovieSearch/useMovieSearch";
+import useMovieSearch from "../../../pages/MovieSearch/hooks/useMovieSearch";
 
 const useInputSearch = () => {
   const navigate = useNavigate();

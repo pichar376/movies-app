@@ -1,10 +1,11 @@
 import MovieCard from "../../components/MovieCard/MovieCard";
-import useMovieSearch from "./useMovieSearch";
+import useMovieSearch from "./hooks/useMovieSearch";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import { BsArrowLeft } from 'react-icons/bs';
+import { useContext, useEffect } from "react";
 import { AiOutlineHeart } from 'react-icons/ai'
+import MoviesContext from "../../context/MoviesContext";
+import NotFound from "../NotFound";
 
 
 const MySearchSection = styled.section`
@@ -46,23 +47,33 @@ const MySearchSection = styled.section`
 const MovieSearch = () => {
   const navigate = useNavigate()
 
-  const { handleChance, moviesDataFinal } = useMovieSearch();
+  const { moviesDataFinal, moviesList } = useMovieSearch();
 
-  console.log(moviesDataFinal)
+  const { currentSearch } = useContext(MoviesContext)
+
+
+
   useEffect(() => {
+    return () => {
 
-    if (!moviesDataFinal) {
-      return navigate("/")
+      if (moviesList.length === 0) {
+        navigate("/")
+      }
     }
-  }, []);
+  }, [currentSearch]);
 
+
+
+
+  if (moviesDataFinal.length === 0) {
+    return (
+      <NotFound />
+    )
+
+
+  }
   return (
     <MySearchSection>
-
-      <div className="prev">
-        <BsArrowLeft />
-
-      </div>
 
       {moviesDataFinal && moviesDataFinal.map((movie) => <div key={movie.id} >
         <MovieCard title={movie.title} duration={movie.runtime} imgSrc={movie.poster_path} movieId={movie.id} /></div>

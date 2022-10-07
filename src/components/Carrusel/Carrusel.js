@@ -1,8 +1,4 @@
-import { useContext, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
-import styled from "styled-components";
-import MoviesContext, { MoviesProvider } from "../../context/MoviesContext";
-import MovieSearch from "../../pages/MovieSearch/MovieSearch";
+import styled from "styled-components"
 import Loader from "../Loader/Loader";
 import MovieCard from "../MovieCard/MovieCard";
 

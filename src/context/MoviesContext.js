@@ -159,12 +159,8 @@ const MoviesProvider = ({ children }) => {
   }
 
 
-  const validationMovies = () => {
-    const moviesValues = Object.values(addToList);
-    const idMoviesAdded = moviesValues.filter((movieId) => movieId !== undefined);
-    console.log(idMoviesAdded)
-    return idMoviesAdded
-  }
+
+
 
 
 
@@ -216,7 +212,6 @@ const MoviesProvider = ({ children }) => {
     currentSearch,
     moviesList,
     addAndDeleteMovie,
-    validationMovies,
     goBack
 
 

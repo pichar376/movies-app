@@ -3,9 +3,9 @@ import styled from "styled-components"
 import useInputSearch from "./hooks/useInputSearch"
 import { useContext } from "react"
 import MoviesContext from "../../context/MoviesContext"
-import useMovieSearch from "../../pages/MovieSearch/useMovieSearch"
 import { motion } from "framer-motion"
 import { variantInput } from "../../helpers/variants"
+import useMovieSearch from "../../pages/MovieSearch/hooks/useMovieSearch"
 
 
 
@@ -47,7 +47,10 @@ input{
 const InputSearch = () => {
   const { clicked, setClicked, handleClicked, handleBlur } = useInputSearch();
 
-  const { handleChange, currentSearch } = useMovieSearch()
+  const { handleChange } = useMovieSearch()
+
+  const { currentSearch } = useContext(MoviesContext);
+
   return (
 
     <MyStyledSearch>

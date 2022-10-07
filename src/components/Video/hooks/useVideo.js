@@ -1,6 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { AiFillPicture } from "react-icons/ai";
-import MoviesContext from "../../../context/MoviesContext";
+import { useEffect, useState } from "react";
 
 
 const initialVolumeController = {

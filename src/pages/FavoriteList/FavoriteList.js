@@ -7,7 +7,7 @@ import MoviesContext, { MoviesProvider } from "../../context/MoviesContext";
 import useFavoriteList from "./hooks/useFavoriteList";
 import { motion } from "framer-motion"
 import { pageVariant, pageVariantList } from "../../helpers/variants";
-import Video from "../../components/Video/Video";
+import { Helmet } from "react-helmet";
 
 
 
@@ -44,7 +44,7 @@ width:100%;
 
 
 
-.back{
+a{
   position:absolute;
   top:0;
   left:0;
@@ -70,14 +70,11 @@ align-items:center;
 flex-flow:column wrap;
 width:100vw;
 height:50vh;
-font-size:40px;
-.no-movies{
-  font-size:60px;
-  color:white;
+@media(min-width:480px){
+  font-size:20px;
 }
-.back{
+a{
   text-decoration:none;
-  color:wite;
 }
 `
 const FavoriteList = () => {
@@ -89,13 +86,20 @@ const FavoriteList = () => {
 
   const { addToList, validationMovies } = useContext(MoviesContext);
 
-  const { movieList, handleDelete, moviesWithOutRepeating } = useFavoriteList();
+  const { movieList, handleDelete, moviesWithOutRepeating, movieToDelete } = useFavoriteList();
 
   const moviesValues = Object.values(addToList);
 
   if (!moviesWithOutRepeating || moviesWithOutRepeating.length === 0) {
     return (
       <motion.div initial="out" animate="in" exit="out" variants={pageVariant} transition={{ duration: 3 }}>
+        \<Helmet >
+          <title>My List</title>
+          <meta
+            name="description"
+            content="Page to know all information about your selected movie"
+          />
+        </Helmet >
         <StyledWithOutMovie>
           <motion.h1 className="no-movies" initial={{ color: "grey", opacity: 0 }} transition={{ duration: 1 }} animate={{ y: 100, opacity: 1, color: "white", }}>No movies Yet</motion.h1>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: .5, delay: .7 }}>
@@ -108,7 +112,14 @@ const FavoriteList = () => {
   };
   return (
     <MyListStyled>
-      <Link className="back" to="/">Go Home</Link>
+      <Helmet >
+        <title>My List</title>
+        <meta
+          name="no movies"
+          content="no  movies yet"
+        />
+      </Helmet >
+      <Link to="/">Go Home</Link>
 
       <motion.div initial="out" animate="in" exit="out" variants={pageVariantList}
         className="map-container">

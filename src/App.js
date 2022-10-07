@@ -31,7 +31,7 @@ function App() {
             <Route path="/favorite-list" element={<FavoriteList />} />
             <Route path="/movie-search/:params" element={<MovieSearch />} />
             <Route path="/description/:id" element={<MovieDescription />} />
-            <Route path="/motion" element={<Motion />} />
+            <Route path="/not-found" element={<NotFound />} />
           </Routes>
         </Layout>
         <Footer />
