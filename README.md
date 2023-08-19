@@ -5,7 +5,7 @@
 ## How to use the app
 
 You can try the app using this link:
-https://movies-details-react-1
+https://movies-details-react-1.netlify.app
 
 ## npm install
 
