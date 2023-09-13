@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import Carrusel from "../components/Carrusel/Carrusel";
+import Carrusel from "../components/Carousel/Carousel";
 import MoviesContext from "../context/MoviesContext";
 import Video from "../components/Video/Video";
 import styled from "styled-components";

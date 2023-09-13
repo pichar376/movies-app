@@ -1,5 +1,5 @@
 
-import Carrusel from './components/Carrusel/Carrusel';
+import Carrusel from './components/Carousel/Carousel';
 import Layout from './components/Layout/Layout';
 import { Route, Routes, useParams } from "react-router-dom";
 import Home from './pages/Home';

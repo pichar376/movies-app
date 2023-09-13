@@ -1,4 +1,4 @@
-import Carrusel from "../Carrusel/Carrusel";
+import Carrusel from "../Carousel/Carousel";
 import Footer from "../Footer/Footer";
 import NavBar from "../NavBar/NavBar";
 import styled from "styled-components"

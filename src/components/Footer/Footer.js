@@ -7,7 +7,11 @@ display:flex;
    height:4rem;
    color:white;
    align-items:flex-end;
+   justify-content:center;
    padding:0 1rem;
+
+   p{
+    color:#ffffff90   }
 `
 const Footer = () => {
 
@@ -15,7 +19,7 @@ const Footer = () => {
 
   return (
     <MyFooterStyle>
-      <p>Proyect developed by Ernesto Pichardo</p>
+      <p>PROJECT DEVELOPED BY ERNESTO PICHARDO</p>
     </MyFooterStyle>
   );
 }
